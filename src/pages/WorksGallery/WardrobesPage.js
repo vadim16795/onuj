@@ -1,7 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useScrollToTop } from '../../hooks/useScrollToTop';
+
 
 const WardrobesPage = () => {
+  useScrollToTop();
+
   const wardrobeExamples = [
     {
       id: 1,
