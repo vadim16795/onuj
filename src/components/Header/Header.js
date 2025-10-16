@@ -12,7 +12,7 @@ const Header = () => {
       <div className="container">
         <nav className="nav">
           <Link to="/" className="logo" onClick={() => setIsMenuOpen(false)}>
-            J-UNO
+            UNO-J
           </Link>
           <ul className={`nav-links ${isMenuOpen ? 'active' : ''}`}>
             <li><Link to="/" onClick={() => setIsMenuOpen(false)}>Главная</Link></li>

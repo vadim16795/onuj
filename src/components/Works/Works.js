@@ -71,7 +71,7 @@ const Works = () => {
                 <div className="work-image">
                   <img 
                     src={work.image} 
-                    alt={`${work.title} от J-UNO`}
+                    alt={`${work.title} от нас`}
                     width="400"
                     height="250"
                     loading="lazy"

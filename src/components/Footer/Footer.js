@@ -9,7 +9,7 @@ const Footer = () => {
           <a href="#" className="social-link">💼</a>
           <a href="#" className="social-link">✈️</a>
         </div>
-        <p>&copy; 2025 J-UNO. Все права защищены.</p>
+        <p>&copy; 2025 UNO-J.</p>
       </div>
     </footer>
   );

@@ -12,7 +12,7 @@ const Hero = () => {
     <section className="hero">
       <div className="container">
         <div className="hero-content fade-in-up">
-          <h1>J-UNO</h1>
+          <h1>UNO-J</h1>
           <p>Индивидуальная мебель на заказ по вашим размерам</p>
           <a href="#works" className="cta-button" onClick={handleWorksClick}>
             Посмотреть работы

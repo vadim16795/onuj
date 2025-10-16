@@ -12,7 +12,7 @@ const Contact = () => {
                 <span className="contact-icon">📧</span>
                 <div>
                   <h4>Email</h4>
-                  <p>info@j-uno.com</p>
+                  <p>info@example.com</p>
                 </div>
               </div>
               <div className="contact-item">
@@ -35,11 +35,11 @@ const Contact = () => {
             <div className="cta-card">
               <h3>Готовы к сотрудничеству?</h3>
               <p>
-                J-UNO всегда открыт для обсуждения новых проектов. 
+                Мы всегда открыт для обсуждения новых проектов. 
                 Свяжитесь с нами удобным способом!
               </p>
               <div className="cta-buttons">
-                <a href="mailto:info@j-uno.com" className="cta-button primary">
+                <a href="mailto:info@example.com" className="cta-button primary">
                   Написать на почту
                 </a>
                 <a href="tel:+79991234567" className="cta-button secondary">
