@@ -2,42 +2,37 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useScrollToTop } from '../../hooks/useScrollToTop';
 
-
 const WardrobesPage = () => {
   useScrollToTop();
 
   const wardrobeExamples = [
     {
       id: 1,
-      image: '/images/works/wardrobes/wardrobe-1.jpg',
+      image: '/images/works/wardrobes/1/wardrobe.jpg',
       title: 'Шкаф-купе для квартиры в ЖК "Солнечный"',
       description: 'Вместительный шкаф-купе с зеркальными дверями и системой хранения премиум-класса',
-      features: ['Зеркальные двери', 'Внутренняя подсветка', 'Система хранения Comform'],
-      size: '240см × 220см × 60см'
+      features: ['Зеркальные двери', 'Внутренняя подсветка', 'Система хранения Comform']
     },
     {
       id: 2,
       image: '/images/works/wardrobes/wardrobe-2.jpg',
       title: 'Распашной шкаф для спальни',
       description: 'Классический распашной шкаф из массива дуба с филенчатыми фасадами',
-      features: ['Массив дуба', 'Филенчатые фасады', 'Выдвижные ящики'],
-      size: '200см × 240см × 65см'
+      features: ['Массив дуба', 'Филенчатые фасады', 'Выдвижные ящики']
     },
     {
       id: 3,
       image: '/images/works/wardrobes/wardrobe-3.jpg',
       title: 'Встроенный шкаф в нишу',
       description: 'Оптимальное использование пространства с системой раздвижных дверей',
-      features: ['Встроенная конструкция', 'Раздвижные двери', 'Угловая система хранения'],
-      size: '280см × 250см × 55см'
+      features: ['Встроенная конструкция', 'Раздвижные двери', 'Угловая система хранения']
     },
     {
       id: 4,
       image: '/images/works/wardrobes/wardrobe-4.jpg',
       title: 'Детский шкаф с ростовой шкалой',
       description: 'Яркий и функциональный шкаф для детской комнаты с игровыми элементами',
-      features: ['Ростовая шкала', 'Безопасные ручки', 'Яркий дизайн'],
-      size: '180см × 200см × 55см'
+      features: ['Ростовая шкала', 'Безопасные ручки', 'Яркий дизайн']
     }
   ];
 
@@ -74,13 +69,13 @@ const WardrobesPage = () => {
                     ))}
                   </ul>
                 </div>
-                <div className="gallery-specs">
-                  <span className="spec">Размеры: {wardrobe.size}</span>
-                </div>
                 <div className="gallery-actions">
-                  <button className="cta-button primary">
-                    Заказать похожий
-                  </button>
+                  <Link 
+                    to={`/works/wardrobes/${wardrobe.id}`} 
+                    className="cta-button primary"
+                  >
+                    Подробнее
+                  </Link>
                 </div>
               </div>
             </div>

@@ -677,7 +677,6 @@ body.menu-open {
   font-size: 1.1rem;
 }
 
-
 /* Work Images - optimized for 400x250 */
 .work-image {
   width: 100%;
@@ -765,7 +764,7 @@ body.menu-open {
   }
   
   .work-image {
-    height: 200px; /* Немного уменьшаем высоту на мобильных */
+    height: 200px;
   }
 }
 
@@ -811,7 +810,7 @@ body.menu-open {
   opacity: 1;
 }
 
-/* Works Gallery Styles */
+/* Works Gallery Styles - ОБНОВЛЕНО: увеличены изображения на 50% */
 .works-gallery {
   padding: 100px 0 40px;
   background: linear-gradient(135deg, #2a2a4e 0%, #1a1a2e 100%);
@@ -867,10 +866,31 @@ body.menu-open {
   color: #cbd5e0;
 }
 
+/* ОБНОВЛЕНО: Gallery Images - увеличены на 50% */
+.gallery-image {
+  height: 400px; /* Было 250px, увеличение на 50% */
+  overflow: hidden;
+  position: relative;
+  border-radius: 10px 10px 0 0;
+}
+
+.gallery-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.gallery-item:hover .gallery-image img {
+  transform: scale(1.05);
+}
+
+/* ОБНОВЛЕНО: Gallery Grid - адаптирован под большие изображения */
 .gallery-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(450px, 1fr)); /* Было 400px */
+  gap: 2.5rem; /* Увеличили gap */
+  margin-top: 2rem;
 }
 
 .gallery-item {
@@ -887,22 +907,6 @@ body.menu-open {
   transform: translateY(-5px);
   box-shadow: 0 15px 40px rgba(138, 43, 226, 0.4);
   border-color: rgba(138, 43, 226, 0.6);
-}
-
-.gallery-image {
-  height: 250px;
-  overflow: hidden;
-}
-
-.gallery-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.3s ease;
-}
-
-.gallery-item:hover .gallery-image img {
-  transform: scale(1.05);
 }
 
 .gallery-content {
@@ -965,4 +969,45 @@ body.menu-open {
 .gallery-actions .cta-button {
   width: 100%;
   justify-content: center;
+}
+
+/* ОБНОВЛЕНО: Адаптивность для больших изображений */
+@media (max-width: 968px) {
+  .gallery-grid {
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 2rem;
+  }
+  
+  .gallery-image {
+    height: 300px; /* Немного меньше на планшетах */
+  }
+}
+
+@media (max-width: 768px) {
+  .gallery-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .gallery-image {
+    height: 280px; /* Оптимально для мобильных */
+  }
+  
+  .gallery-content {
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .gallery-image {
+    height: 250px; /* Возвращаем к исходному на маленьких экранах */
+  }
+  
+  .gallery-grid {
+    gap: 1rem;
+  }
+  
+  .gallery-content {
+    padding: 1.25rem;
+  }
 }
