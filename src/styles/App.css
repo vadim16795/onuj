@@ -76,14 +76,19 @@ body {
 /* Smooth scrolling */
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 80px;
 }
 
-/* Ensure sections account for fixed header */
-#about,
-#works,
+/* Индивидуальные настройки для каждой секции */
+#about {
+  scroll-margin-top: -20px;
+}
+
+#works {
+  scroll-margin-top: -20px;
+}
+
 #contact {
-  scroll-margin-top: 80px;
+  scroll-margin-top: -60px; /* Меньше для контактов если нужно */
 }
 
 /* Selection styles */
