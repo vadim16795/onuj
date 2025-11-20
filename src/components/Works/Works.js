@@ -79,9 +79,6 @@ const Works = () => {
                 </div>
                 <h3>{work.title}</h3>
                 <p>{work.description}</p>
-                <div className="work-card-overlay">
-                  <span>Посмотреть примеры →</span>
-                </div>
               </div>
             </Link>
           ))}

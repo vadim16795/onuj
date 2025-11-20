@@ -305,7 +305,9 @@ body.menu-open {
   z-index: 2;
 }
 
-.works-grid {
+/* ОБНОВЛЕНО: Единый стиль для всех карточек */
+.works-grid,
+.gallery-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
   gap: 2rem;
@@ -313,9 +315,9 @@ body.menu-open {
   z-index: 2;
 }
 
-.work-card {
+.work-card,
+.gallery-item {
   background: rgba(42, 42, 78, 0.8);
-  padding: 2rem;
   border-radius: 15px;
   box-shadow: 
     0 5px 20px rgba(138, 43, 226, 0.2),
@@ -328,11 +330,12 @@ body.menu-open {
   backdrop-filter: blur(10px);
   display: flex;
   flex-direction: column;
-  height: 650px; /* ФИКСИРОВАННАЯ высота */
+  height: 650px; /* ФИКСИРОВАННАЯ высота 650px */
   min-height: 650px; /* Запрещаем уменьшение */
 }
 
-.work-card::before {
+.work-card::before,
+.gallery-item::before {
   content: '';
   position: absolute;
   top: 0;
@@ -344,16 +347,44 @@ body.menu-open {
   transition: transform 0.3s ease;
 }
 
-.work-card:hover::before {
+.work-card:hover::before,
+.gallery-item:hover::before {
   transform: scaleX(1);
 }
 
-.work-card:hover {
+.work-card:hover,
+.gallery-item:hover {
   transform: translateY(-10px);
   box-shadow: 
     0 15px 30px rgba(138, 43, 226, 0.4),
     inset 0 1px 0 rgba(255, 255, 255, 0.2);
   border-color: rgba(138, 43, 226, 0.6);
+}
+
+/* ОБНОВЛЕНО: Единые стили для изображений - увеличенная высота */
+.work-image,
+.gallery-image {
+  width: calc(100% - 2rem); /* Одинаковые отступы от рамки */
+  height: 480px; /* УВЕЛИЧЕННАЯ высота для больших изображений */
+  margin: 1rem auto; /* Центрирование и одинаковые отступы */
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+  background: linear-gradient(135deg, rgba(138, 43, 226, 0.1) 0%, rgba(147, 51, 234, 0.05) 100%);
+  flex-shrink: 0;
+}
+
+.work-image img,
+.gallery-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: all 0.3s ease;
+}
+
+ .work-image img,
+.gallery-item:hover .gallery-image img {
+  transform: scale(1.05);
 }
 
 .work-icon {
@@ -363,19 +394,33 @@ body.menu-open {
   filter: drop-shadow(0 0 10px rgba(138, 43, 226, 0.5));
 }
 
-.work-card h3 {
-  margin-bottom: 1rem;
-  color: #ffffff;
-  font-size: 1.4rem;
-  font-weight: 600;
-  flex-shrink: 0; /* Заголовок не сжимается */
+/* ОБНОВЛЕНО: Единые стили для контента */
+.work-card-content,
+.gallery-content {
+  padding: 0 1.5rem 1.5rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
-.work-card p {
+.work-card h3,
+.gallery-content h3 {
+  color: #ffffff;
+  font-size: 1.3rem;
+  margin-bottom: 0.75rem;
+  font-weight: 600;
+  flex-shrink: 0;
+  line-height: 1.3;
+}
+
+.work-card p,
+.gallery-content p {
   color: #cbd5e0;
-  line-height: 1.6;
+  line-height: 1.5;
   margin: 0;
   flex: 1;
+  font-size: 0.95rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -588,83 +633,6 @@ body.menu-open {
   width: 100%;
 }
 
-/* Responsive Design */
-@media (max-width: 968px) {
-  .contact-content {
-    grid-template-columns: 1fr;
-    gap: 2rem;
-  }
-  
-  .contacts-grid {
-    grid-template-columns: 1fr;
-  }
-  
-  .cta-card {
-    max-width: 100%;
-  }
-}
-
-@media (max-width: 768px) {
-  .hero-content h1 {
-    font-size: 2.5rem;
-  }
-  
-  .hero-content p {
-    font-size: 1.2rem;
-  }
-  
-  .about-content {
-    grid-template-columns: 1fr;
-  }
-  
-  .works-grid {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-  }
-  
-  .work-card {
-    padding: 2rem 1.5rem;
-  }
-  
-  .work-icon {
-    font-size: 3rem;
-  }
-  
-  .contact-content {
-    grid-template-columns: 1fr;
-  }
-  
-  .cta-buttons {
-    flex-direction: column;
-  }
-}
-
-@media (max-width: 480px) {
-  .hero-content h1 {
-    font-size: 2rem;
-  }
-  
-  .hero-content p {
-    font-size: 1.1rem;
-  }
-  
-  .contact-item {
-    padding: 1rem;
-  }
-  
-  .cta-card {
-    padding: 1.5rem;
-  }
-  
-  .work-card {
-    padding: 1.5rem 1rem;
-  }
-  
-  .work-icon {
-    font-size: 2.5rem;
-  }
-}
-
 /* About Text Full Width */
 .about-text-full {
   max-width: 800px;
@@ -686,59 +654,9 @@ body.menu-open {
   font-size: 1.1rem;
 }
 
-/* Work Images - optimized for 400x250 */
-.work-image {
-  width: 100%;
-  height: 300px;
-  margin-bottom: 1.5rem;
-  border-radius: 10px;
-  overflow: hidden;
-  position: relative;
-  background: linear-gradient(135deg, rgba(138, 43, 226, 0.1) 0%, rgba(147, 51, 234, 0.05) 100%);
-  flex-shrink: 0;
-}
-
-.work-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: all 0.3s ease;
-}
-
-.work-card:hover .work-image img {
-  transform: scale(1.05);
-}
-
-/* Work Cards - optimized for image proportions */
-.work-card {
-  background: rgba(42, 42, 78, 0.8);
-  padding: 2rem;
-  border-radius: 15px;
-  box-shadow: 
-    0 5px 20px rgba(138, 43, 226, 0.2),
-    inset 0 1px 0 rgba(255, 255, 255, 0.1);
-  text-align: center;
-  transition: all 0.3s ease;
-  border: 1px solid rgba(138, 43, 226, 0.3);
-  position: relative;
-  overflow: hidden;
-  backdrop-filter: blur(10px);
-  display: flex;
-  flex-direction: column;
-  height: fit-content;
-}
-
-/* Work Grid - optimized for 400px width items */
-.works-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-  gap: 2rem;
-  position: relative;
-  z-index: 2;
-}
-
 /* Placeholder for missing images */
-.work-image::before {
+.work-image::before,
+.gallery-image::before {
   content: '📷 Фото';
   position: absolute;
   top: 50%;
@@ -751,65 +669,22 @@ body.menu-open {
 }
 
 .work-image:has(img[src*="placeholder"])::before,
-.work-image:not(:has(img[src]))::before {
+.work-image:not(:has(img[src]))::before,
+.gallery-image:has(img[src*="placeholder"])::before,
+.gallery-image:not(:has(img[src]))::before {
   display: block;
 }
 
 .work-image:has(img[src*="placeholder"]) img,
-.work-image:not(:has(img[src])) img {
+.work-image:not(:has(img[src])) img,
+.gallery-image:has(img[src*="placeholder"]) img,
+.gallery-image:not(:has(img[src])) img {
   display: none;
 }
 
-@media (max-width: 968px) {
-  .works-grid .work-card-link .work-card {
-    min-height: 480px;
-  }
-  
-  .works-grid .work-card-link .work-image {
-    height: 280px;
-  }
-  
-  .works-grid {
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 1.5rem;
-  }
-}
-
-@media (max-width: 768px) {
-  .works-grid .work-card-link .work-card {
-    min-height: 450px;
-  }
-  
-  .works-grid .work-card-link .work-image {
-    height: 250px;
-  }
-  
-  .works-grid {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-  }
-  
-  .work-card {
-    padding: 1.5rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .works-grid .work-card-link .work-card {
-    min-height: 420px;
-  }
-  
-  .works-grid .work-card-link .work-image {
-    height: 220px;
-  }
-  
-  .work-card {
-    padding: 1.25rem 1rem;
-  }
-}
-
 /* Work Card Links */
-.work-card-link {
+.work-card-link,
+.gallery-item-link {
   text-decoration: none;
   color: inherit;
   display: block;
@@ -817,55 +692,20 @@ body.menu-open {
   transition: all 0.3s ease;
 }
 
-.work-card-link:hover {
+.work-card-link:hover,
+.gallery-item-link:hover {
   color: inherit;
   transform: translateY(-5px);
 }
 
-.work-card-link:hover .work-card {
+.work-card-link:hover .work-card,
+.gallery-item-link:hover .gallery-item {
   transform: translateY(-5px);
   box-shadow: 0 15px 40px rgba(138, 43, 226, 0.4);
   border-color: rgba(138, 43, 226, 0.6);
 }
 
-.works-grid .work-card-link {
-  display: block;
-  height: 100%;
-}
-
-.works-grid .work-card-link .work-card {
-  height: 650px; /* ОБНОВЛЕНО: фиксированная высота */
-  min-height: 650px; /* Запрещаем уменьшение */
-}
-
-.works-grid .work-card-link .work-image {
-  height: 300px; /* Фиксированная высота изображения */
-}
-
-.work-card-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(138, 43, 226, 0.1);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  font-weight: 600;
-  opacity: 0;
-  transition: all 0.3s ease;
-  border-radius: 15px;
-  z-index: 2;
-}
-
-.work-card:hover .work-card-overlay {
-  opacity: 1;
-  transform: scale(1.02);
-}
-
-/* Works Gallery Styles - ОБНОВЛЕНО: увеличены изображения на 50% */
+/* Works Gallery Styles */
 .works-gallery {
   padding: 100px 0 40px;
   background: linear-gradient(135deg, #2a2a4e 0%, #1a1a2e 100%);
@@ -921,92 +761,7 @@ body.menu-open {
   color: #cbd5e0;
 }
 
-/* ОБНОВЛЕНО: Gallery Images - увеличены на 50% */
-.gallery-image {
-  height: 300px;
-  overflow: hidden;
-  position: relative;
-  border-radius: 10px 10px 0 0;
-  flex-shrink: 0;
-}
-
-.gallery-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.3s ease;
-}
-
-.gallery-item:hover .gallery-image img {
-  transform: scale(1.05);
-}
-
-/* ОБНОВЛЕНО: Gallery Grid - адаптирован под большие изображения */
-.gallery-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-  gap: 2rem;
-  margin-top: 2rem;
-}
-
-.gallery-item {
-  background: rgba(42, 42, 78, 0.8);
-  border-radius: 15px;
-  overflow: hidden;
-  box-shadow: 0 10px 30px rgba(138, 43, 226, 0.2);
-  border: 1px solid rgba(138, 43, 226, 0.3);
-  transition: all 0.3s ease;
-  backdrop-filter: blur(10px);
-  display: flex;
-  flex-direction: column;
-  height: 650px; /* ФИКСИРОВАННАЯ высота */
-  min-height: 650px; /* Запрещаем уменьшение */
-}
-
-.gallery-item:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 15px 40px rgba(138, 43, 226, 0.4);
-  border-color: rgba(138, 43, 226, 0.6);
-}
-
-.gallery-content {
-  padding: 2rem;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.gallery-content h3 {
-  color: #ffffff;
-  font-size: 1.3rem;
-  margin-bottom: 1rem;
-  font-weight: 600;
-  flex-shrink: 0;
-}
-
-.work-card h3 {
-  margin-bottom: 1rem;
-  color: #ffffff;
-  font-size: 1.4rem;
-  font-weight: 600;
-  flex-shrink: 0;
-}
-
-.work-card-content {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.gallery-content p {
-  color: #cbd5e0;
-  line-height: 1.6;
-  margin-bottom: 1.5rem;
-  flex: 1;
-}
-
+/* Дополнительные элементы для галереи */
 .gallery-features {
   margin-bottom: 1.5rem;
 }
@@ -1043,21 +798,19 @@ body.menu-open {
   margin-bottom: 1.5rem;
 }
 
-.gallery-actions {
-  text-align: center;
-}
-
-.gallery-actions .cta-button {
-  width: 100%;
-  justify-content: center;
-}
-
-/* ОБНОВЛЕНО: Адаптивность для больших изображений */
+/* Responsive Design */
 @media (max-width: 968px) {
-  .works-grid .work-card-link .work-card,
-  .gallery-item {
-    height: 600px;
-    min-height: 600px;
+  .contact-content {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  
+  .contacts-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .cta-card {
+    max-width: 100%;
   }
   
   .works-grid,
@@ -1066,17 +819,29 @@ body.menu-open {
     gap: 1.5rem;
   }
   
+  .work-card,
+  .gallery-item {
+    height: 600px;
+    min-height: 600px;
+  }
+  
   .work-image,
   .gallery-image {
-    height: 280px;
+    height: 400px; /* Уменьшаем пропорционально */
   }
 }
 
 @media (max-width: 768px) {
-  .works-grid .work-card-link .work-card,
-  .gallery-item {
-    height: 550px;
-    min-height: 550px;
+  .hero-content h1 {
+    font-size: 2.5rem;
+  }
+  
+  .hero-content p {
+    font-size: 1.2rem;
+  }
+  
+  .about-content {
+    grid-template-columns: 1fr;
   }
   
   .works-grid,
@@ -1085,339 +850,80 @@ body.menu-open {
     gap: 1.5rem;
   }
   
-  .work-card {
-    padding: 1.5rem;
-  }
-  
-  .gallery-content {
-    padding: 1.5rem;
+  .work-card,
+  .gallery-item {
+    height: 550px;
+    min-height: 550px;
   }
   
   .work-image,
   .gallery-image {
-    height: 250px;
+    height: 350px; /* Уменьшаем пропорционально */
+  }
+  
+  .work-card-content,
+  .gallery-content {
+    padding: 0 1.25rem 1.25rem;
+  }
+  
+  .contact-content {
+    grid-template-columns: 1fr;
+  }
+  
+  .cta-buttons {
+    flex-direction: column;
   }
 }
 
 @media (max-width: 480px) {
-  .works-grid .work-card-link .work-card,
+  .hero-content h1 {
+    font-size: 2rem;
+  }
+  
+  .hero-content p {
+    font-size: 1.1rem;
+  }
+  
+  .contact-item {
+    padding: 1rem;
+  }
+  
+  .cta-card {
+    padding: 1.5rem;
+  }
+  
+  .work-card,
   .gallery-item {
     height: 500px;
     min-height: 500px;
   }
   
-  .work-card {
-    padding: 1.25rem 1rem;
-  }
-  
-  .gallery-content {
-    padding: 1.25rem;
-  }
-  
   .work-image,
   .gallery-image {
-    height: 220px;
+    height: 300px; /* Уменьшаем пропорционально */
+  }
+  
+  .work-card-content,
+  .gallery-content {
+    padding: 0 1rem 1rem;
+  }
+  
+  .work-card h3,
+  .gallery-content h3 {
+    font-size: 1.1rem;
+  }
+  
+  .work-card p,
+  .gallery-content p {
+    font-size: 0.85rem;
   }
 }
-/* Wardrobe Detail Page Styles */
-.wardrobe-detail {
-  margin-top: 2rem;
-}
 
-.wardrobe-main-section {
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-  gap: 3rem;
-  margin-bottom: 3rem;
-  align-items: start;
-}
-
-.wardrobe-main-image .gallery-image {
-  height: 500px;
-  border-radius: 15px;
-  box-shadow: 0 10px 30px rgba(138, 43, 226, 0.3);
-}
-
-.wardrobe-quick-info {
-  background: rgba(42, 42, 78, 0.8);
-  padding: 2rem;
-  border-radius: 15px;
-  box-shadow: 0 5px 20px rgba(138, 43, 226, 0.2);
-  border: 1px solid rgba(138, 43, 226, 0.3);
-  backdrop-filter: blur(10px);
-}
-
-.quick-specs {
-  margin-bottom: 2rem;
-}
-
-.spec-highlight {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem 0;
-  border-bottom: 1px solid rgba(138, 43, 226, 0.1);
-}
-
-.spec-highlight:last-child {
-  border-bottom: none;
-}
-
-.spec-label {
-  color: #cbd5e0;
-  font-weight: 500;
-}
-
-.spec-value {
-  color: #ffffff;
-  font-weight: 600;
-}
-
-.spec-value.price {
-  color: #8a2be2;
-  font-size: 1.4rem;
-  font-weight: 700;
-  text-shadow: 0 0 10px rgba(138, 43, 226, 0.5);
-}
-
-.action-buttons {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-.wardrobe-full-description {
-  background: rgba(42, 42, 78, 0.8);
-  padding: 2.5rem;
-  border-radius: 15px;
-  margin-bottom: 3rem;
-  box-shadow: 0 5px 20px rgba(138, 43, 226, 0.2);
-  border: 1px solid rgba(138, 43, 226, 0.3);
-}
-
-.wardrobe-full-description h3 {
-  color: #ffffff;
-  margin-bottom: 1.5rem;
-  font-size: 1.4rem;
-  border-bottom: 2px solid #8a2be2;
-  padding-bottom: 0.5rem;
-}
-
-.wardrobe-full-description p {
-  color: #cbd5e0;
-  line-height: 1.7;
-  font-size: 1.1rem;
-}
-
-.wardrobe-gallery-section {
-  margin-bottom: 3rem;
-}
-
-.wardrobe-gallery-section h3 {
-  color: #ffffff;
-  margin-bottom: 2rem;
-  font-size: 1.4rem;
-  text-align: center;
-}
-
-.gallery-grid-mini {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 1.5rem;
-}
-
-.gallery-item-mini .gallery-image {
-  height: 250px;
-  border-radius: 10px;
-}
-
-.wardrobe-specs-section {
-  margin-bottom: 3rem;
-}
-
-.specs-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2rem;
-}
-
-.specs-column {
-  background: rgba(42, 42, 78, 0.8);
-  padding: 2.5rem;
-  border-radius: 15px;
-  box-shadow: 0 5px 20px rgba(138, 43, 226, 0.2);
-  border: 1px solid rgba(138, 43, 226, 0.3);
-  backdrop-filter: blur(10px);
-}
-
-.specs-column h3 {
-  color: #ffffff;
-  margin-bottom: 1.5rem;
-  font-size: 1.4rem;
-  border-bottom: 2px solid #8a2be2;
-  padding-bottom: 0.5rem;
-}
-
-.features-list {
-  list-style: none;
-  padding: 0;
-}
-
-.features-list li {
-  color: #cbd5e0;
-  padding: 0.75rem 0;
-  border-bottom: 1px solid rgba(138, 43, 226, 0.1);
-  position: relative;
-  padding-left: 2rem;
-}
-
-.features-list li:before {
-  content: '✓';
-  position: absolute;
-  left: 0;
-  color: #8a2be2;
-  font-weight: bold;
-  font-size: 1.1rem;
-}
-
-.features-list li:last-child {
-  border-bottom: none;
-}
-
-.specs-details {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-.spec-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  padding: 0.75rem 0;
-  border-bottom: 1px solid rgba(138, 43, 226, 0.1);
-  gap: 1rem;
-}
-
-.spec-item:last-child {
-  border-bottom: none;
-}
-
-.spec-name {
-  color: #cbd5e0;
-  font-weight: 500;
-  flex-shrink: 0;
-}
-
-.spec-value {
-  color: #ffffff;
-  font-weight: 600;
-  text-align: right;
-  flex: 1;
-}
-
-.wardrobe-cta-section {
-  text-align: center;
-}
-
-.wardrobe-cta-section .cta-card {
-  max-width: 600px;
-  margin: 0 auto;
-}
-
-.cta-button.large {
-  padding: 15px 30px;
-  font-size: 1.1rem;
-}
-
-/* Image Placeholder Styles */
-.image-placeholder {
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(135deg, rgba(138, 43, 226, 0.1) 0%, rgba(147, 51, 234, 0.05) 100%);
+/* Убираем старые стили для кнопок действий */
+.gallery-actions {
   display: none;
-  align-items: center;
-  justify-content: center;
-  border-radius: 10px;
 }
 
-.placeholder-content {
-  text-align: center;
-  color: #8a2be2;
-}
-
-.placeholder-icon {
-  font-size: 3rem;
-  display: block;
-  margin-bottom: 1rem;
-}
-
-/* Responsive Design */
-@media (max-width: 968px) {
-  .wardrobe-main-section {
-    grid-template-columns: 1fr;
-    gap: 2rem;
-  }
-  
-  .wardrobe-main-image .gallery-image {
-    height: 400px;
-  }
-  
-  .specs-grid {
-    grid-template-columns: 1fr;
-  }
-  
-  .gallery-grid-mini {
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  }
-}
-
-@media (max-width: 768px) {
-  .wardrobe-main-image .gallery-image {
-    height: 300px;
-  }
-  
-  .wardrobe-quick-info,
-  .wardrobe-full-description,
-  .specs-column {
-    padding: 2rem 1.5rem;
-  }
-  
-  .spec-item {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.5rem;
-  }
-  
-  .spec-value {
-    text-align: left;
-  }
-}
-
-@media (max-width: 480px) {
-  .wardrobe-main-image .gallery-image {
-    height: 250px;
-  }
-  
-  .wardrobe-quick-info,
-  .wardrobe-full-description,
-  .specs-column {
-    padding: 1.5rem 1rem;
-  }
-  
-  .gallery-grid-mini {
-    grid-template-columns: 1fr;
-  }
-  
-  .gallery-item-mini .gallery-image {
-    height: 200px;
-  }
-  
-  .action-buttons .cta-button {
-    font-size: 0.9rem;
-    padding: 10px 20px;
-  }
-}
 /* Image Modal Styles */
 .image-modal {
   position: fixed;
@@ -1639,27 +1145,4 @@ body.menu-open {
 
 .modal-image[src] {
   background: transparent;
-}
-
-/* Gallery Item Links */
-.gallery-item-link {
-  text-decoration: none;
-  color: inherit;
-  display: block;
-  transition: all 0.3s ease;
-}
-
-.gallery-item-link:hover {
-  color: inherit;
-  transform: translateY(-5px);
-}
-
-.gallery-item-link:hover .gallery-item {
-  box-shadow: 0 20px 45px rgba(138, 43, 226, 0.4);
-  border-color: rgba(138, 43, 226, 0.6);
-}
-
-/* Убираем старые стили для кнопки действий */
-.gallery-actions {
-  display: none;
 }
