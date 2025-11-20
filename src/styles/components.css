@@ -307,7 +307,7 @@ body.menu-open {
 
 .works-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
   gap: 2rem;
   position: relative;
   z-index: 2;
@@ -315,7 +315,7 @@ body.menu-open {
 
 .work-card {
   background: rgba(42, 42, 78, 0.8);
-  padding: 2.5rem 2rem;
+  padding: 2rem;
   border-radius: 15px;
   box-shadow: 
     0 5px 20px rgba(138, 43, 226, 0.2),
@@ -326,6 +326,10 @@ body.menu-open {
   position: relative;
   overflow: hidden;
   backdrop-filter: blur(10px);
+  display: flex;
+  flex-direction: column;
+  height: 650px; /* ФИКСИРОВАННАЯ высота */
+  min-height: 650px; /* Запрещаем уменьшение */
 }
 
 .work-card::before {
@@ -364,12 +368,17 @@ body.menu-open {
   color: #ffffff;
   font-size: 1.4rem;
   font-weight: 600;
+  flex-shrink: 0; /* Заголовок не сжимается */
 }
 
 .work-card p {
   color: #cbd5e0;
   line-height: 1.6;
   margin: 0;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* Contact Styles */
@@ -680,12 +689,13 @@ body.menu-open {
 /* Work Images - optimized for 400x250 */
 .work-image {
   width: 100%;
-  height: 250px;
+  height: 300px;
   margin-bottom: 1.5rem;
   border-radius: 10px;
   overflow: hidden;
   position: relative;
   background: linear-gradient(135deg, rgba(138, 43, 226, 0.1) 0%, rgba(147, 51, 234, 0.05) 100%);
+  flex-shrink: 0;
 }
 
 .work-image img {
@@ -751,6 +761,14 @@ body.menu-open {
 }
 
 @media (max-width: 968px) {
+  .works-grid .work-card-link .work-card {
+    min-height: 480px;
+  }
+  
+  .works-grid .work-card-link .work-image {
+    height: 280px;
+  }
+  
   .works-grid {
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
     gap: 1.5rem;
@@ -758,23 +776,35 @@ body.menu-open {
 }
 
 @media (max-width: 768px) {
+  .works-grid .work-card-link .work-card {
+    min-height: 450px;
+  }
+  
+  .works-grid .work-card-link .work-image {
+    height: 250px;
+  }
+  
   .works-grid {
     grid-template-columns: 1fr;
     gap: 1.5rem;
   }
   
-  .work-image {
-    height: 200px;
+  .work-card {
+    padding: 1.5rem;
   }
 }
 
 @media (max-width: 480px) {
-  .work-image {
-    height: 180px;
+  .works-grid .work-card-link .work-card {
+    min-height: 420px;
+  }
+  
+  .works-grid .work-card-link .work-image {
+    height: 220px;
   }
   
   .work-card {
-    padding: 1.5rem 1rem;
+    padding: 1.25rem 1rem;
   }
 }
 
@@ -783,10 +813,33 @@ body.menu-open {
   text-decoration: none;
   color: inherit;
   display: block;
+  height: 100%;
+  transition: all 0.3s ease;
 }
 
 .work-card-link:hover {
   color: inherit;
+  transform: translateY(-5px);
+}
+
+.work-card-link:hover .work-card {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 40px rgba(138, 43, 226, 0.4);
+  border-color: rgba(138, 43, 226, 0.6);
+}
+
+.works-grid .work-card-link {
+  display: block;
+  height: 100%;
+}
+
+.works-grid .work-card-link .work-card {
+  height: 650px; /* ОБНОВЛЕНО: фиксированная высота */
+  min-height: 650px; /* Запрещаем уменьшение */
+}
+
+.works-grid .work-card-link .work-image {
+  height: 300px; /* Фиксированная высота изображения */
 }
 
 .work-card-overlay {
@@ -795,7 +848,7 @@ body.menu-open {
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(138, 43, 226, 0.1); /* Почти невидимый */
+  background: rgba(138, 43, 226, 0.1);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -804,8 +857,7 @@ body.menu-open {
   opacity: 0;
   transition: all 0.3s ease;
   border-radius: 15px;
-  /* backdrop-filter: blur(10px); ← УБИРАЕМ */
-  border: 1px solid rgba(255, 255, 255, 0.03);
+  z-index: 2;
 }
 
 .work-card:hover .work-card-overlay {
@@ -871,10 +923,11 @@ body.menu-open {
 
 /* ОБНОВЛЕНО: Gallery Images - увеличены на 50% */
 .gallery-image {
-  height: 400px; /* Было 250px, увеличение на 50% */
+  height: 300px;
   overflow: hidden;
   position: relative;
   border-radius: 10px 10px 0 0;
+  flex-shrink: 0;
 }
 
 .gallery-image img {
@@ -891,8 +944,8 @@ body.menu-open {
 /* ОБНОВЛЕНО: Gallery Grid - адаптирован под большие изображения */
 .gallery-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(450px, 1fr)); /* Было 400px */
-  gap: 2.5rem; /* Увеличили gap */
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 2rem;
   margin-top: 2rem;
 }
 
@@ -904,6 +957,10 @@ body.menu-open {
   border: 1px solid rgba(138, 43, 226, 0.3);
   transition: all 0.3s ease;
   backdrop-filter: blur(10px);
+  display: flex;
+  flex-direction: column;
+  height: 650px; /* ФИКСИРОВАННАЯ высота */
+  min-height: 650px; /* Запрещаем уменьшение */
 }
 
 .gallery-item:hover {
@@ -914,6 +971,10 @@ body.menu-open {
 
 .gallery-content {
   padding: 2rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .gallery-content h3 {
@@ -921,12 +982,29 @@ body.menu-open {
   font-size: 1.3rem;
   margin-bottom: 1rem;
   font-weight: 600;
+  flex-shrink: 0;
+}
+
+.work-card h3 {
+  margin-bottom: 1rem;
+  color: #ffffff;
+  font-size: 1.4rem;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+.work-card-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .gallery-content p {
   color: #cbd5e0;
   line-height: 1.6;
   margin-bottom: 1.5rem;
+  flex: 1;
 }
 
 .gallery-features {
@@ -976,42 +1054,69 @@ body.menu-open {
 
 /* ОБНОВЛЕНО: Адаптивность для больших изображений */
 @media (max-width: 968px) {
-  .gallery-grid {
-    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-    gap: 2rem;
+  .works-grid .work-card-link .work-card,
+  .gallery-item {
+    height: 600px;
+    min-height: 600px;
   }
   
+  .works-grid,
+  .gallery-grid {
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 1.5rem;
+  }
+  
+  .work-image,
   .gallery-image {
-    height: 300px; /* Немного меньше на планшетах */
+    height: 280px;
   }
 }
 
 @media (max-width: 768px) {
+  .works-grid .work-card-link .work-card,
+  .gallery-item {
+    height: 550px;
+    min-height: 550px;
+  }
+  
+  .works-grid,
   .gallery-grid {
     grid-template-columns: 1fr;
     gap: 1.5rem;
   }
   
-  .gallery-image {
-    height: 280px; /* Оптимально для мобильных */
+  .work-card {
+    padding: 1.5rem;
   }
   
   .gallery-content {
     padding: 1.5rem;
   }
+  
+  .work-image,
+  .gallery-image {
+    height: 250px;
+  }
 }
 
 @media (max-width: 480px) {
-  .gallery-image {
-    height: 250px; /* Возвращаем к исходному на маленьких экранах */
+  .works-grid .work-card-link .work-card,
+  .gallery-item {
+    height: 500px;
+    min-height: 500px;
   }
   
-  .gallery-grid {
-    gap: 1rem;
+  .work-card {
+    padding: 1.25rem 1rem;
   }
   
   .gallery-content {
     padding: 1.25rem;
+  }
+  
+  .work-image,
+  .gallery-image {
+    height: 220px;
   }
 }
 /* Wardrobe Detail Page Styles */
@@ -1534,4 +1639,27 @@ body.menu-open {
 
 .modal-image[src] {
   background: transparent;
+}
+
+/* Gallery Item Links */
+.gallery-item-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  transition: all 0.3s ease;
+}
+
+.gallery-item-link:hover {
+  color: inherit;
+  transform: translateY(-5px);
+}
+
+.gallery-item-link:hover .gallery-item {
+  box-shadow: 0 20px 45px rgba(138, 43, 226, 0.4);
+  border-color: rgba(138, 43, 226, 0.6);
+}
+
+/* Убираем старые стили для кнопки действий */
+.gallery-actions {
+  display: none;
 }

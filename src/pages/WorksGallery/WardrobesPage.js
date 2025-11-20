@@ -49,36 +49,35 @@ const WardrobesPage = () => {
         
         <div className="gallery-grid">
           {wardrobeExamples.map((wardrobe) => (
-            <div key={wardrobe.id} className="gallery-item">
-              <div className="gallery-image">
-                <img 
-                  src={wardrobe.image} 
-                  alt={wardrobe.title}
-                  width="400"
-                  height="250"
-                />
-              </div>
-              <div className="gallery-content">
-                <h3>{wardrobe.title}</h3>
-                <p>{wardrobe.description}</p>
-                <div className="gallery-features">
-                  <h4>Особенности:</h4>
-                  <ul>
-                    {wardrobe.features.map((feature, index) => (
-                      <li key={index}>{feature}</li>
-                    ))}
-                  </ul>
+            <Link 
+              key={wardrobe.id} 
+              to={`/works/wardrobes/${wardrobe.id}`}
+              className="gallery-item-link"
+            >
+              <div className="gallery-item">
+                <div className="gallery-image">
+                  <img 
+                    src={wardrobe.image} 
+                    alt={wardrobe.title}
+                    width="400"
+                    height="250"
+                  />
                 </div>
-                <div className="gallery-actions">
-                  <Link 
-                    to={`/works/wardrobes/${wardrobe.id}`} 
-                    className="cta-button primary"
-                  >
-                    Подробнее
-                  </Link>
+                <div className="gallery-content">
+                  <h3>{wardrobe.title}</h3>
+                  <p>{wardrobe.description}</p>
+                  <div className="gallery-features">
+                    <h4>Особенности:</h4>
+                    <ul>
+                      {wardrobe.features.map((feature, index) => (
+                        <li key={index}>{feature}</li>
+                      ))}
+                    </ul>
+                  </div>
+                  {/* Убираем кнопку "Подробнее" */}
                 </div>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </div>
