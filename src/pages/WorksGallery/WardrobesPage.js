@@ -10,29 +10,25 @@ const WardrobesPage = () => {
       id: 1,
       image: '/images/works/wardrobes/1/wardrobe.jpg',
       title: 'Шкаф-купе для квартиры в ЖК "Солнечный"',
-      description: 'Вместительный шкаф-купе с зеркальными дверями и системой хранения премиум-класса',
-      features: ['Зеркальные двери', 'Внутренняя подсветка', 'Система хранения Comform']
+      description: 'Вместительный шкаф-купе с зеркальными дверями и системой хранения премиум-класса'
     },
     {
       id: 2,
-      image: '/images/works/wardrobes/wardrobe-2.jpg',
+      image: '/images/works/wardrobes/2/wardrobe.jpg',
       title: 'Распашной шкаф для спальни',
-      description: 'Классический распашной шкаф из массива дуба с филенчатыми фасадами',
-      features: ['Массив дуба', 'Филенчатые фасады', 'Выдвижные ящики']
+      description: 'Классический распашной шкаф из массива дуба с филенчатыми фасадами'
     },
     {
       id: 3,
-      image: '/images/works/wardrobes/wardrobe-3.jpg',
+      image: '/images/works/wardrobes/3/wardrobe.jpg',
       title: 'Встроенный шкаф в нишу',
-      description: 'Оптимальное использование пространства с системой раздвижных дверей',
-      features: ['Встроенная конструкция', 'Раздвижные двери', 'Угловая система хранения']
+      description: 'Оптимальное использование пространства с системой раздвижных дверей'
     },
     {
       id: 4,
-      image: '/images/works/wardrobes/wardrobe-4.jpg',
+      image: '/images/works/wardrobes/4/wardrobe.jpg',
       title: 'Детский шкаф с ростовой шкалой',
-      description: 'Яркий и функциональный шкаф для детской комнаты с игровыми элементами',
-      features: ['Ростовая шкала', 'Безопасные ручки', 'Яркий дизайн']
+      description: 'Яркий и функциональный шкаф для детской комнаты с игровыми элементами'
     }
   ];
 
@@ -66,15 +62,6 @@ const WardrobesPage = () => {
                 <div className="gallery-content">
                   <h3>{wardrobe.title}</h3>
                   <p>{wardrobe.description}</p>
-                  <div className="gallery-features">
-                    <h4>Особенности:</h4>
-                    <ul>
-                      {wardrobe.features.map((feature, index) => (
-                        <li key={index}>{feature}</li>
-                      ))}
-                    </ul>
-                  </div>
-                  {/* Убираем кнопку "Подробнее" */}
                 </div>
               </div>
             </Link>
